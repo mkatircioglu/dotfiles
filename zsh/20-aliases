@@ -1,0 +1,23 @@
+alias diff="diff -u"
+# Aliases
+alias vi="vim"
+
+alias cd..='cd ..'
+
+alias bi='pisi bi'
+
+mypg=/home/bluebox/pardus/playground/igungor
+alias mypg='cd $mypg'
+
+review=/home/bluebox/pardus/playground/review
+alias review='cd $review'
+
+uludag=/home/bluebox/uludag/trunk
+alias uludag='cd $uludag'
+
+corpdevel=/home/bluebox/pardus/corporate2/devel
+alias corpdevel='cd $corpdevel'
+
+alias mine='ps xco pid,command,%cpu,%mem,state'
+
+alias tmux="tmux -2"
