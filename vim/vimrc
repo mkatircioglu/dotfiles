@@ -118,6 +118,11 @@ filetype plugin indent on
 
 " Plugin configurations
 """""""""""""""""""""""
+
+" NERDCommenter
+" Add extra 1 space around delimiters
+let NERDSpaceDelims=1
+
 " NERDTree
 nmap ,nt :NERDTreeToggle <CR>
 let NERDTreeChDirMode=2
