@@ -70,7 +70,7 @@ end
 
 " change the default setting in gvim
 if has('gui_running')
-    set gfn=DejavuSansMono\ 8
+    set gfn=DejavuSansMono\ 9
     " colorscheme solarized
 endif
 
