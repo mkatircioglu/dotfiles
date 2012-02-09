@@ -1,3 +1,6 @@
+alias ls='ls --color'
+alias ll='ls -l --color'
+alias la='ls -lah --color'
 mypg=/home/bluebox/pardus/playground/igungor
 alias mypg='cd $mypg'
 
