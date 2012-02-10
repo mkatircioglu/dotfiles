@@ -1,8 +1,9 @@
+set nocompatible
+
 " Pathogen
 call pathogen#runtime_append_all_bundles()
 call pathogen#helptags()
 
-set nocompatible
 set backspace=2
 set autoindent
 set ruler
