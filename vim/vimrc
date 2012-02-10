@@ -78,11 +78,9 @@ endif
 
 " Only do this part when compiled with support for autocommands
 if has("autocmd")
-  " In text files, always limit the width of text to 78 characters
-  " and set syntax to txt
   autocmd BufRead *.txt set tw=78
   autocmd BufRead *.txt set syntax=notes
-  " enable python omni completion, rocks babe
+
   autocmd FileType python set omnifunc=pythoncomplete#Complete
 
   " Set the cwindow (quickfix) to the bottom of all windows
@@ -92,6 +90,13 @@ if has("autocmd")
   autocmd BufRead *.cpp set makeprg=make
   autocmd BufRead *.h set makeprg=make
   autocmd BufRead *.hpp set makeprg=make
+
+  autocmd BufNewFile,BufRead *.rst setlocal ft=rst
+  autocmd FileType rst setlocal expandtab shiftwidth=4 tabstop=4 softtabstop=4
+  \ colorcolumn=79 formatoptions+=nqt textwidth=74
+
+  "spell check when writing commit logs
+  autocmd filetype svn,*commit* setlocal spell
 
   " When editing a file, always jump to the last cursor position
   autocmd BufReadPost *
@@ -165,11 +170,4 @@ function! ToggleNERDTreeAndTagbar()
     endfor
 endfunction
 nmap <leader>\ :call ToggleNERDTreeAndTagbar()<CR>
-
-" Filetypes configuration
-"""""""""""""""""""""""""
-" rst
-autocmd BufNewFile,BufRead *.rst setlocal ft=rst
-autocmd FileType rst setlocal expandtab shiftwidth=4 tabstop=4 softtabstop=4  colorcolumn=79
-\ formatoptions+=nqt textwidth=74
 
