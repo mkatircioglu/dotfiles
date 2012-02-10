@@ -4,4 +4,7 @@ all:
 	[ -d ~/.zsh/ ] || ln -s ~/dotfiles/zsh/ ~/.zsh
 	[ -f ~/.zshrc ] || ln -s ~/dotfiles/zshrc ~/.zshrc
 
+clean:
+	rm -f ~/.vimrc ~/.zshrc ~/.vim ~/.zsh
+
 .PHONY: all
