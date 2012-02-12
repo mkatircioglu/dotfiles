@@ -1,15 +1,18 @@
-if [[ "$USER" == root ]]; then
-    PROMPT="%{$bold_color$fg[red]%}%m %{$bold_color$fg[blue]%}%1~ %# %{$reset_color%}"
-else
-    PROMPT="%{$bold_color$fg[blue]%}[%{$bold_color$fg[red]%}%1~%{$bold_color$fg[blue]%}] %{$bold_color$fg[yellow]%}> %{$reset_color%}"
-fi
-
 autoload -Uz compinit
 compinit
 
-# Load the prompt theme system
 autoload -U promptinit
 promptinit
+
+autoload -U colors
+colors
+
+if [[ "$USER" == root ]]; then
+    PROMPT="%{$bold_color$fg[red]%}%m %{$bold_color$fg[blue]%}%1~ %# %{$reset_color%}"
+else
+    PS1="%{$bold_color$fg[blue]%}[%{$bold_color$fg[red]%}%1~%{$bold_color$fg[blue]%}] %{$bold_color$fg[yellow]%}> %{$reset_color%}"
+    # PS1=$'\e[0;31m$ \e[0m'
+fi
 
 setopt SHARE_HISTORY
 setopt EXTENDED_HISTORY
