@@ -72,8 +72,8 @@ end
 
 " change the default setting in gvim
 if has('gui_running')
-    set gfn=DejavuSansMono\ 9
-    " colorscheme solarized
+    set gfn=DejavuSansMono\ 8
+    colorscheme solarized
 endif
 
 " Only do this part when compiled with support for autocommands
