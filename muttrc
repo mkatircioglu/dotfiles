@@ -1,5 +1,5 @@
 set realname = "Fatih Arslan"
-set from = "farslan@pardus.org.tr"
+set from = "mail@deneme.org.tr"
 set use_from = yes
 set envelope_from = "yes"
 set sig_dashes                  # A signature must always start with a "-- "
@@ -64,17 +64,11 @@ mailboxes       =INBOX \
                 =x.xorg-packagers \
                 =x.xorg-announce \
                 =x.libva
-#                 =distributions.ubuntu-x \
-#                 =distributions.opensuse-commit \
-#                 =distributions.opensuse-xorg \
-#                 =tex.tex-live \
-#                 =tex.tlbuild \
-#                 =tex.tldoc \
 
 
 
 set sendmail    ="/usr/bin/msmtp"       # Smtp işlemcisi olarak msmtp kullaniyoruz (~/.msmtprc))
-set imap_user   = farslan               # Imap giriş ismi
+set imap_user   = username               # Imap giriş ismi
 set imap_pass   = password               # Imap giriş şifresi
 
 set imap_passive = no                   # Mutt otomatik olarak yeni Imap bağlantısı kursun 
@@ -191,26 +185,6 @@ color body brightblue  default "[-a-z_0-9.%$]+@[-a-z_0-9.]+\\.[-a-z][-a-z]+"
 color header brightmagenta default "^(Date):"
 color header brightyellow default "^Subject:"
 color body brightred default " [;:]-*[)>(<|]"
-
-
-#Aliases 
-#Persons
-alias gokmen Gökmen Göksel <gokmen@pardus.org.tr>
-alias bahadır Bahadır Kandemir <bahadir@pardus.org.tr>
-alias koray Koray Löker <loker@pardus.org.tr>
-alias serdar Serdar Dalgıç <serdar@pardus.org.tr>
-alias onur Onur Küçük <onur@pardus.org.tr>
-alias renan Renan Çakırerk <renan@pardus.org.tr>
-alias gökçen Gökçen Eraslan <gokcen@pardus.org.tr>
-alias fatih Fatih Aşıcı <fatih@pardus.org.tr>
-alias ozan Ozan Çağlayan <ozan@pardus.org.tr>
-alias ibrahim \"H. İbrahim Güngör\" <ibrahim@pardus.org.tr>
-
-#Lists
-#
-alias gelistirici <gelistirici@pardus.org.tr>
-alias security Pardus Security <security@pardus.org.tr>
-alias teknik <teknik@pardus.org.tr>
 
 
 #These are treated as "mail-list". That enables us to use commands like
