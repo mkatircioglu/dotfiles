@@ -1,51 +1,55 @@
-set nocompatible
+" .vimrc
+
+set nocompatible                "Turn off compability mode with Vi, we don't need that anymore
 
 " Pathogen
 call pathogen#runtime_append_all_bundles()
 call pathogen#helptags()
 
-set backspace=2
-set autoindent
-set ruler
-set showmode
+set cindent
+set autoindent                  " Copy indent from current line when starting a new line.
+set backspace=indent,eol,start  " makes backspace key more powerful.
 
-syntax enable
-set shiftwidth=4
-set wrap
-set linebreak
-set laststatus=2
-set showcmd
-set wildmenu
+set showmatch                   " do not show matching brackets by flickering
+set incsearch                   " shows the match while typing
+set hlsearch                    " highlight found searches
+set smartcase                   " Turn of smart searching
+set ignorecase                  " Search incase sensitive
 
-set hlsearch
-set incsearch
-set showmatch
+set ruler                       " show line and column number
+set wildmenu                    " command line tab completion, more superior
+set history=100                 " Number of lines of command line history.
+
+set noerrorbells                " No beeps
+set gdefault                    " Use 'g' flag by default with :s/foo/bar/.
+set number                      " Show line numbers
+
+set ttyscroll=0                 " Turn off scrolling (this is faster).
+set ttyfast                     " We have a fast terminal connection.
+set showcmd                     " Show me what I'm typing
+set showmode                    " Show current mode.
+set encoding=utf-8              " Set default encoding to UTF-8
+set autowrite                   " Automatically save before :next, :make etc.
+set cmdheight=2                 " The commandbar height
+
+set splitright                  " Split vertical windows right to the current windows
+set splitbelow                  " Split horizontal windows below to the current windows
+set cursorline                  " Show a line at cursor position
+set noswapfile                  " Don't use swapfile
+
+set mat=5                       " show matching brackets for 0.5 seconds
+set wrap                        " word wrap
+set lazyredraw                  " the screen will not be redrawn while executing macros, registers
+
+" Status line format:
+" {buffer number}: {file name, relative path to the current working directory}{modified flag}{readonly flag}
+" {preview flag} [file type, encoding, format] [current line-total lines, current column][position percentage in file]
+"set statusline=%n:\ %f%m%r%w\ [%Y,%{&fileencoding},%{&fileformat}]\ [%{getcwd()}]%=\ [%l-%L,%v][%p%%]
+
+syntax enable                   " syntax formatting for languages
+
 set background=dark
-set modelines=0
-
-set ts=4
-set sta
-set sts=4
-set expandtab
-
-set noswapfile
-
-set ttyfast
-
-" utf-8 default encoding
-set enc=utf-8
-
-" Prefer unix over windows over os9 formats
-set fileformats=unix,dos,mac
-
-" Make mouse middle click paste without formatting it
-map <MouseMiddle> <Esc>"*p
-
-" Set working directory
-nnoremap <leader>. :lcd %:p:h<CR>
-
-set background=dark
-set t_Co=256
+set t_Co=256                    " set to 256 color mode if the console supports it
 let g:solarized_termtrans=1
 let g:solarized_termcolors=256
 let g:solarized_contrast="high"
@@ -54,12 +58,116 @@ let g:solarized_visibility="high"
 colorscheme mustang
 
 set makeprg=make
-
 set showfulltag
+
+" With a map leader it's possible to do extra key combinations
+" i.e: <leader>w saves the current file
+let mapleader = ","
+let g:mapleader = ","
+
+" Fast saving
+nmap <leader>w :w!<cr>
+nmap <leader>q :q!<cr>
+nmap <leader>wq :wq!<cr>
+
+" Save fold settings, open/close folds easily with spacebar
+nnoremap <space> za
+
+" Break lines into two pieces with Ctrl + j (reverse of Shift + j)
+nnoremap <NL> i<CR><ESC>
+
+" Toggle numbers with ctrl+n
+nmap <C-N><C-N> :set invnumber <CR>
+
+" Move up and down on splitted lines (on small width screens)
+map <Up> gk
+map <Down> gj
+map k gk
+map j gj
+
+" Make mouse middle click paste without formatting it
+map <MouseMiddle> <Esc>"*p
+
+" <C-l> redraws the screen and removes any search highlighting.
+nnoremap <silent> <C-l> :nohl<CR><C-l>
+
+" No highlight
+map <c-l> :nohl<cr>
+
+" Open a .h file of a .cpp file vertical or horizontal
+map <F3> :sp %:p:s,.h$,.X123X,:s,.cpp$,.h,:s,.X123X$,.cpp,<CR>
+map <F4> :vs %:p:s,.h$,.X123X,:s,.cpp$,.h,:s,.X123X$,.cpp,<CR>
+
+map <F8> :!python % <enter>
+
+map <F9> :!gcc -o %< %<CR><C-w>
+"map <F10> :! ./%<<CR>
+map <F10> :! ./%< <CR>
+
+" Just go out in insert mode
+imap jj <ESC>
+
+" Since I use linux, I want this
+let g:clipbrdDefaultReg = '+'
+
+" Search mappings: These will make it so that going to the next one in a
+" " search will center on the line it's found in.
+map N Nzz
+map n nzz
+
+set nobackup            " Dont create annoying backup files
+
+" NERDTree settings
+map <c-k> :NERDTreeToggle<CR>
+
+" Open help window always vertically
+nmap zH :vert he
+
+" Set working directory
+nnoremap <leader>. :lcd %:p:h<CR>
+
+" Enable undo even if the file is closed
+set undofile
+set undodir=/tmp
 
 " we don't want to edit these kind of files >.<
 set wildignore=*.o,*.obj,*.bak,*.exe,*.so,*.la,*.out,*.pyc,*.swp
 
+" Enable filetype stuff
+filetype on
+filetype plugin on
+filetype plugin indent on
+
+" Prefer unix over windows over os9 formats
+set fileformats=unix,dos,mac
+
+" -[ FileTypes ]-
+" mail
+autocmd FileType mail,human set formatoptions+=t textwidth=80
+
+" Python stuff
+autocmd FileType python let python_highlight_all = 1
+autocmd FileType python let python_slow_sync = 1
+autocmd FileType python set omnifunc=pythoncomplete#Complete
+autocmd FileType python set expandtab shiftwidth=4 softtabstop=4
+autocmd FileType python set completeopt=menu
+autocmd FileType python set expandtab              " Tabs are converted to spaces
+
+" Multibyte reading of utf-16
+if has("multi_byte")
+  if &termencoding == ""
+    let &termencoding = &encoding
+  endif
+  set encoding=utf-8
+  setglobal fileencoding=utf-8
+  "setglobal bomb
+  set fileencodings=ucs-bom,utf-8,latin1
+endif
+
+" Automatically cd into the directory that the file is in
+" autocmd BufEnter * execute "chdir ".escape(expand("%:p:h"), ' ')
+"set autochdir
+"
 " No toolbars, menu or scrollbars in the GUI
 if has('gui')
     set guioptions-=m  "no menu
@@ -69,12 +177,6 @@ if has('gui')
     set guioptions-=r  "no scrollbar
     set guioptions-=R
 end
-
-" change the default setting in gvim
-if has('gui_running')
-    set gfn=DejavuSansMono\ 8
-    colorscheme solarized
-endif
 
 " Only do this part when compiled with support for autocommands
 if has("autocmd")
@@ -105,24 +207,6 @@ if has("autocmd")
   \ endif
 endif
 
-" Don't use Ex mode, use Q for formatting
-map Q gq
-nmap <C-N><C-N> :set invnumber <CR>
-map <Up> gk
-map <Down> gj
-map k gk
-map j gj
-
-" <C-l> redraws the screen and removes any search highlighting.
-nnoremap <silent> <C-l> :nohl<CR><C-l>
-" <space> toggles folds opened and closed
-nnoremap <space> za
-
-" Enable filetype stuff
-filetype on
-filetype plugin on
-filetype plugin indent on
-
 " Plugin configurations
 """""""""""""""""""""""
 
@@ -131,7 +215,6 @@ filetype plugin indent on
 let NERDSpaceDelims=1
 
 " NERDTree
-nmap ,nt :NERDTreeToggle <CR>
 let NERDTreeChDirMode=2
 let NERDTreeIgnore=['\~$', '\.pyc$', '\.pyo$', '\.class$', 'pip-log\.txt$', '\.o$']
 
@@ -170,4 +253,3 @@ function! ToggleNERDTreeAndTagbar()
     endfor
 endfunction
 nmap <leader>\ :call ToggleNERDTreeAndTagbar()<CR>
-
