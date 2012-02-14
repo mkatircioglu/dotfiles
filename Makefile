@@ -7,6 +7,6 @@ all:
 	[ -f ~/.tmux.conf ] || ln -s ~/dotfiles/tmuxconf ~/.tmux.conf
 
 clean:
-	rm -f ~/.vimrc ~/.zshrc ~/.vim ~/.zsh
+	rm -rf ~/.vimrc ~/.zshrc ~/.vim ~/.zsh
 
 .PHONY: all
