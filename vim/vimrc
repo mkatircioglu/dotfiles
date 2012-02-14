@@ -91,13 +91,6 @@ map <MouseMiddle> <Esc>"*p
 " <C-l> redraws the screen and removes any search highlighting.
 nnoremap <silent> <C-l> :nohl<CR><C-l>
 
-" No highlight
-map <c-l> :nohl<cr>
-
-" Open a .h file of a .cpp file vertical or horizontal
-map <F3> :sp %:p:s,.h$,.X123X,:s,.cpp$,.h,:s,.X123X$,.cpp,<CR>
-map <F4> :vs %:p:s,.h$,.X123X,:s,.cpp$,.h,:s,.X123X$,.cpp,<CR>
-
 map <F8> :!python % <enter>
 
 map <F9> :!gcc -o %< %<CR><C-w>
@@ -200,7 +193,7 @@ if has("autocmd")
   "spell check when writing commit logs
   autocmd filetype svn,*commit* setlocal spell
 
-  " When editing a file, always jump to the last cursor position
+  "" When editing a file, always jump to the last cursor position
   autocmd BufReadPost *
   \ if line("'\"") > 0 && line ("'\"") <= line("$") |
   \   exe "normal g'\"" |
