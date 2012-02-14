@@ -245,4 +245,4 @@ function! ToggleNERDTreeAndTagbar()
         endif
     endfor
 endfunction
-nmap <leader>\ :call ToggleNERDTreeAndTagbar()<CR>
+nmap <leader>j :call ToggleNERDTreeAndTagbar()<CR>
