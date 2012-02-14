@@ -1,0 +1,271 @@
+set realname = "Fatih Arslan"
+set from = "farslan@pardus.org.tr"
+set use_from = yes
+set envelope_from = "yes"
+set sig_dashes                  # A signature must always start with a "-- "
+set signature  = "~/.signature"
+
+### Klasör ayarlari
+## Use msmtp rather than sendmail. Check that 
+# the path is correct for your system:
+
+set folder      = imaps://imap.pardus.org.tr/               # Mail dizinindeki ana dizin
+set spoolfile   = imaps://imap.pardus.org.tr/INBOX          # Gelen kutusu
+set postponed   = imaps://imap.pardus.org.tr/INBOX.Drafts   # Taslaklar
+set record      = imaps://imap.pardus.org.tr/INBOX.Sent     # Gönderilenler
+mailboxes       =INBOX \
+                =INBOX.Sent \
+                =INBOX.bugzilla \
+                =INBOX.review \
+                =INBOX.farm \
+                =pardus.announce \
+                =pardus.bugzilla \
+                =pardus.camia \
+                =pardus.comak \
+                =pardus.commits.contrib \
+                =pardus.commits.internal \
+                =pardus.commits.paketler \
+                =pardus.commits.projeler \
+                =pardus.commits.uludag \
+                =pardus.devel \
+                =pardus.farm \
+                =pardus.gelistirici \
+                =pardus.gsoc \
+                =pardus.guvenlik \
+                =pardus.kullanici \
+                =pardus.mentor \
+                =pardus.review \
+                =pardus.security \
+                =pardus.stable \
+                =pardus.teknik \
+                =pardus.translators \
+                =pardus.turkce \
+                =pardus.users \
+                =lkd.pardus-commits \
+                =lkd.pardus-depo \
+                =lkd.pardus-trac \
+                =vim.use \
+                =vim.dev \
+                =distros.fedora.my_packages \
+                =distros.arch.my_packages \
+                =x.mesa-announce \
+                =x.mesa-commit \
+                =x.mesa-dev \
+                =x.mesa-users \
+                =x.dri-devel \
+                =x.dri-patches \
+                =x.dri-users \
+                =x.nouveau \
+                =x.nouveau-cvs \
+                =x.xcb \
+                =x.xorg \
+                =x.xorg-commit \
+                =x.xorg-devel \
+                =x.xorg-packagers \
+                =x.xorg-announce \
+                =x.libva
+#                 =distributions.ubuntu-x \
+#                 =distributions.opensuse-commit \
+#                 =distributions.opensuse-xorg \
+#                 =tex.tex-live \
+#                 =tex.tlbuild \
+#                 =tex.tldoc \
+
+
+
+set sendmail    ="/usr/bin/msmtp"       # Smtp işlemcisi olarak msmtp kullaniyoruz (~/.msmtprc))
+set imap_user   = farslan               # Imap giriş ismi
+set imap_pass   = password               # Imap giriş şifresi
+
+set imap_passive = no                   # Mutt otomatik olarak yeni Imap bağlantısı kursun 
+set imap_keepalive = 120                # keep imap connection alive by(time in seconds)
+set imap_idle                           # prevent imap from closing
+set imap_check_subscribed               # Tüm Imap klasörlerini dahil et (böylelikle mailboxes kısmında belirtmemize gerek yok)
+
+ ignore *    ### Heeader bilgilerinin hepsini yok say ...
+unignore From: Resent-From: Reply-To: X-mailer: User-Agent: Date: To: Cc: Subject: ### ... buradakiler dışında
+
+
+folder-hook . set sort=threads                  ## Tüm klasörleri thread olarak göster, yani mail listelerine uygun bir şekilde
+
+set index_format="%4C %Z %{%b %d} %-15.15F (%4l) %s" ##Index'de görünüm biçimi
+set message_cachedir="~/.mutt/msgcache/"        # Mesajları bellekte tut
+set header_cache = ~/.mutt/hcache               # Başlıkları yerel bellekte tut, böylelikle daha hızlı olur
+set mail_check=3                                # 3 saniyede bir postaları kontrol et
+set nobeep                                      # Ötmesini engelle 
+set pager_index_lines = 10                      # Yukarıda 15 satır indexi gösterir.
+set fast_reply                                  # Başlığı sormadan cevapla.
+set nomark_old                                  # Mutt’u kapanınca okunmamış e-postaları okunmuş olarak işaretleme
+set charset = utf-8                             # Türkçe karakter için
+set user_agent                                  # User-agent bilgilerini mail’e ekliyor
+set delete=ask-yes                              # Onaylanmış olarak sor, doğrudan entere basınca siler
+set editor='vim + -c "set wrap" -c "set nocp" -c "?^$"'
+set include = yes                               # Cevaplanan mail'i de dahil eder (alıntı)
+set indent_str= ">"                             # Alıntı formatını belirle
+set forward_format= "Fwd: %s"                   # Forward edilen mesajın başlığını belirliyor
+set askcc=no                                    # CC satırını sorma
+set check_new=yes                               # Klasörlerde yeni mail’lere bakıyor
+set copy=yes                                 # Gönderilen mesajların yedeğini öntanımlı olarak alma (mail listelerin kopyasına gerek yok) ...
+set reverse_name=yes                            # Gelen e-posta'daki TO bilgisine göre FROM değişkenini değiştir
+unset edit_headers                              # CC, BCC gibi şeyleri sorma
+set reply_to = no
+
+## Msmtp için iki tane farklı hesap oluşturduk. 
+## Alt+1 ve Alt+2 ile kolayca göndereceğimiz hesapları seçebiliriz (envelope_from kullanilmasi şartı ile)
+#macro index \C1 ":set from=farslan@pardus.org.tr" "Switch to farslan@pardus.org.tr"
+#macro index \C2 ":set from=ftharsln@gmail.com" "Switch to ftharsln@gmail.com"
+#
+#
+macro index <left> <sync-mailbox><change-folder>? "Go to the folder menu"
+macro browser <space>    <check-new>
+
+macro browser <right>    <select-entry>
+
+bind index gg first-entry
+bind index G last-entry
+bind pager gg   top
+bind pager G   bottom
+
+# I don't have a printer
+bind index p noop
+bind pager p noop
+#
+macro index gi "<change-folder>=INBOX<enter>" "Go to Inbox"
+# macro index gr "<change-folder>=pardus.review<enter>" "Go to review"
+macro index gp "<change-folder>=pardus.commits.paketler<enter>" "Go to paketler-commits"
+macro index gu "<change-folder>=pardus.commits.uludag<enter>" "Go to paketler-commits"
+macro index gb "<change-folder>=pardus.bugzilla<enter>" "Go to bugzilla"
+
+macro pager gi "<change-folder>=INBOX<enter>" "Go to Inbox"
+# macro pager gr "<change-folder>=pardus.review<enter>" "Go to review"
+macro pager gp "<change-folder>=pardus.commits.paketler<enter>" "Go to paketler-commits"
+macro pager gu "<change-folder>=pardus.commits.uludag<enter>" "Go to uludag-commits"
+macro pager gb "<change-folder>=pardus.bugzilla<enter>" "Go to bugzilla"
+
+# move half page like in vi
+bind generic \Cu    half-up
+bind generic \Cd    half-down
+bind pager   \Cu    half-up
+bind pager   \Cd    half-down
+bind index   \Cu    half-up
+bind index   \Cd    half-down
+
+# Repositioning, again like vi
+bind index zt current-top
+bind index zz current-middle
+bind index zb current-bottom
+
+# Colors for items in the reader
+color header brightyellow default "^(From|Subject):"
+color header brightcyan   default ^To:
+color header brightcyan   default ^Cc:
+mono  header bold                 "^(From|Subject):"
+
+# regular new messages
+color index green         default   ~N
+# regular tagged messages
+color index cyan         default    ~T
+# regular flagged messages
+color index blue         default     ~F
+#messages from me
+color index magenta black   ~P
+# deleted messages
+color index red           white   ~D
+# color index red           default "!~N ~D"
+# color index red           white   "~N ~D"
+
+color normal default default
+color hdrdefault yellow default
+color signature green default
+color attachment brightyellow default
+color indicator black green
+color quoted green default
+color quoted1 white default
+color tilde blue default
+color tree red default
+
+color body brightcyan default "[-a-z_0-9.%$]+@[-a-z_0-9.]+\\.[-a-z][-a-z]+"
+color body brightcyan default "(http|ftp|news|telnet|finger)://[^ \">\t\r\n]*"
+color body cyan default "mailto:[-a-z_0-9.]+@[-a-z_0-9.]+"
+color body brightblue  default "[-a-z_0-9.%$]+@[-a-z_0-9.]+\\.[-a-z][-a-z]+"
+color header brightmagenta default "^(Date):"
+color header brightyellow default "^Subject:"
+color body brightred default " [;:]-*[)>(<|]"
+
+
+#Aliases 
+#Persons
+alias gokmen Gökmen Göksel <gokmen@pardus.org.tr>
+alias bahadır Bahadır Kandemir <bahadir@pardus.org.tr>
+alias koray Koray Löker <loker@pardus.org.tr>
+alias serdar Serdar Dalgıç <serdar@pardus.org.tr>
+alias onur Onur Küçük <onur@pardus.org.tr>
+alias renan Renan Çakırerk <renan@pardus.org.tr>
+alias gökçen Gökçen Eraslan <gokcen@pardus.org.tr>
+alias fatih Fatih Aşıcı <fatih@pardus.org.tr>
+alias ozan Ozan Çağlayan <ozan@pardus.org.tr>
+alias ibrahim \"H. İbrahim Güngör\" <ibrahim@pardus.org.tr>
+
+#Lists
+#
+alias gelistirici <gelistirici@pardus.org.tr>
+alias security Pardus Security <security@pardus.org.tr>
+alias teknik <teknik@pardus.org.tr>
+
+
+#These are treated as "mail-list". That enables us to use commands like
+#list-reply
+subscribe bugzilla
+subscribe bug
+subscribe buildfarm
+subscribe gelistirici
+subscribe gsoc
+subscribe review
+subscribe stable
+subscribe turkce
+
+subscribe pardus-guvenlik
+subscribe pardus-devel
+subscribe pardus-camia
+subscribe pardus-security
+subscribe pardus-translators
+subscribe pardus-users
+subscribe pardus-kullanicilari
+subscribe contrib-commits
+subscribe internal-commits
+subscribe paketler-commits
+subscribe uludag-commits
+subscribe oi-commits
+
+subscribe tex-live
+subscribe tlbuild
+subscribe tldistro
+subscribe tldoc
+
+# set up the sidebar, default not visible 
+set sidebar_width=33
+set sidebar_visible=yes
+set sidebar_delim= |'
+
+# color of folders with new mail
+color sidebar_new yellow default
+#macro pager \cb <pipe-entry>'urlview'<enter> 'Follow links with urlview'
+#macro pager \cb <pipe-entry>'urlview'<enter> 'Follow links with urlview'
+
+# b toggles sidebar visibility
+macro index b '<enter-command>toggle sidebar_visible<enter>'
+macro pager b '<enter-command>toggle sidebar_visible<enter>'
+
+# ctrl-n, ctrl-p to select next, prev folder 
+# ctrl-o to open selected folder 
+bind index \cp sidebar-prev
+bind index \cn sidebar-next
+bind index \co sidebar-open
+bind pager \cp sidebar-prev
+bind pager \cn sidebar-next
+bind pager \co sidebar-open
+
+# bind index \cj sidebar-scroll-down
+# bind index \ck sidebar-scroll-up
+# bind pager \cj sidebar-scroll-down
+# bind pager \ck sidebar-scroll-up
