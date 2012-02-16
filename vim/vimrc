@@ -55,7 +55,7 @@ let g:solarized_termcolors=256
 let g:solarized_contrast="high"
 let g:solarized_visibility="high"
 
-colorscheme solarized
+colorscheme herald
 
 set makeprg=make
 set showfulltag
