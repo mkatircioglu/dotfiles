@@ -34,7 +34,6 @@ set cmdheight=2                 " The commandbar height
 
 set splitright                  " Split vertical windows right to the current windows
 set splitbelow                  " Split horizontal windows below to the current windows
-set cursorline                  " Show a line at cursor position
 set noswapfile                  " Don't use swapfile
 
 set mat=5                       " show matching brackets for 0.5 seconds

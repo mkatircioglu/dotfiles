@@ -1,44 +1,20 @@
 # Load Autojump
-source /etc/profile.d/autojump.zsh
+# sudo apt-get install autojump
+source /usr/share/autojump/autojump.zsh
 
 #Disable Autcorrectur
 unsetopt correct_all
 
 #Defaults
-
 export EDITOR="vim"
 export VISUAL="vim"
-export BROWSER="chromium-browser"
+export BROWSER="google-chrome"
 
 # Remove words by one by, instead of fullpath
 # i.eg C-w will remove "bar" from "/foo/bar" and not the whole path
 export WORDCHARS=''
 
 bindkey -e
-
-# Fix backspace in vi mode
-# bindkey '^?' backward-delete-char
-
-# Delete words like in emacsmode
-# bindkey "^W" backward-kill-word    # vi-backward-kill-word
-
-# Enable incremental search in vi mode
-# bindkey -M viins '^r' history-incremental-search-backward
-# bindkey -M vicmd '^r' history-incremental-search-backward
-
-# Prompt setting and enabling vi (insert-normal) mode displaying
-# function zle-line-init zle-keymap-select {
-#     PROMPT="%B%{$fg[red]%}%m %{$fg[blue]%}%1~ ${${KEYMAP/vicmd/[n]}/(main|viins)/[i]} %{$reset_color%}%# %b"
-#     zle reset-prompt
-# }
-# zle -N zle-line-init
-# zle -N zle-keymap-select
-
-# Use my EDITOR in command-line
-# vi mode
-# autoload -U         edit-command-line
-# zle -N              edit-command-line
-# bindkey -M vicmd v  edit-command-line
 
 # emacs mode
 autoload edit-command-line
@@ -49,40 +25,17 @@ bindkey '^Xe' edit-command-line
 # ALIASES #
 ###########
 
-alias cit="~/code/cit/cit.py"
-
 # List direcory contents
+alias ls='ls --color=auto'
 alias lsa='ls -lah'
 alias l='ls -la'
 alias ll='ls -l'
 alias sl=ls # often screw this up
 
-alias sshcekirdek="ssh farslan@cekirdek.pardus.org.tr"
-alias sshmail="ssh farslan@mail.pardus.org.tr"
-alias sshgalib="ssh fatih@192.168.4.161"
-
 alias dg="git diff"
-alias p="vim pspec.xml"
-alias a="vim actions.py"
-alias t="vim translations.xml"
 alias u="svn up"
 alias m="vim Makefile"
-alias c="vim configure.ac"
 
-alias afind='ack-grep -il'
-
-alias b="pisi bi pspec.xml -dv --ignore-sandbox"
-alias bis="pisi bi pspec.xml -dv --ignore-sandbox"
-alias bi="pisi bi pspec.xml -dv"
-
-alias bisu="pisi bi pspec.xml -dv --ignore-sandbox --unpack"
-alias bisuq="pisi bi pspec.xml -dv --ignore-sandbox --unpack --use-q"
-alias biss="pisi bi pspec.xml -dv --ignore-sandbox --setup"
-alias bisb="pisi bi pspec.xml -dv --ignore-sandbox --build"
-alias bisi="pisi bi pspec.xml -dv --ignore-sandbox --install"
-alias bisp="pisi bi pspec.xml -dv --ignore-sandbox --package"
-
-alias kur="pisi it *.pisi"
 alias sil="rm *.pisi"
 
 alias c="clear"
@@ -98,35 +51,29 @@ setopt pushd_ignore_dups
 alias ..='cd ..'
 alias cd..='cd ..'
 
-alias 1='cd -'
-alias 2='cd +2'
-alias 3='cd +3'
-alias 4='cd +4'
-alias 5='cd +5'
-alias 6='cd +6'
-alias 7='cd +7'
-alias 8='cd +8'
-alias 9='cd +9'
+# alias 1='cd -'
+# alias 2='cd +2'
+# alias 3='cd +3'
+# alias 4='cd +4'
+# alias 5='cd +5'
+# alias 6='cd +6'
+# alias 7='cd +7'
+# alias 8='cd +8'
+# alias 9='cd +9'
 
-cd () {
-  if   [[ "x$*" == "x..." ]]; then
-    cd ../..
-  elif [[ "x$*" == "x...." ]]; then
-    cd ../../..
-  elif [[ "x$*" == "x....." ]]; then
-    cd ../../..
-  elif [[ "x$*" == "x......" ]]; then
-    cd ../../../..
-  else
-    builtin cd "$@"
-  fi
-}
-
-# functions
-#
-f() { pisi info "$@"}
-s() { pisi sr "$@"}
-d() { svn di | colordiff}
+# cd () {
+  # if   [[ "x$*" == "x..." ]]; then
+    # cd ../..
+  # elif [[ "x$*" == "x...." ]]; then
+    # cd ../../..
+  # elif [[ "x$*" == "x....." ]]; then
+    # cd ../../..
+  # elif [[ "x$*" == "x......" ]]; then
+    # cd ../../../..
+  # else
+    # builtin cd "$@"
+  # fi
+# }
 
 ##############
 # COMPLETION #
@@ -221,6 +168,8 @@ setopt prompt_subst
 # ls colors
 autoload colors; colors;
 export lscolors="gxfxcxdxbxegedabagacad"
+
+PS1="%{$fg[red]%}%B%n%b%{$reset_color%}@%{$fg[blue]%}%B%m%b %{$fg[yellow]%}%B%1~%b %{$reset_color%}%% "
 
 # PLUGIN
 
