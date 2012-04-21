@@ -17,7 +17,8 @@ set smartcase                   " Turn of smart searching
 set ignorecase                  " Search incase sensitive
 
 set ruler                       " show line and column number
-set wildmenu                    " command line tab completion, more superior
+set wildmode=longest,list,full                    " command line tab completion, more superior
+set wildmenu			" command line tab completion, more superior
 set history=100                 " Number of lines of command line history.
 
 set noerrorbells                " No beeps
