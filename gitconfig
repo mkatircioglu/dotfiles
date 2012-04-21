@@ -1,9 +1,6 @@
 [user]
-	name = Name Surname
-	email = mail@example.com
-[github]
-	user = username
-	buttontoken = aklsdjalkjdalk123120931sakdlja
+	name = Fatih Arslan
+	email = ftharsln@gmail.com
 [alias]
     st = status
     ci = commit
