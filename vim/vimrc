@@ -65,6 +65,10 @@ set showfulltag
 let mapleader = ","
 let g:mapleader = ","
 
+
+" add quotes to autoclose plugin
+let g:AutoClosePairs_add = "<> \" \'"
+
 " Fast saving
 nmap <leader>w :w!<cr>
 nmap <leader>q :q!<cr>
@@ -111,7 +115,7 @@ map n nzz
 set nobackup            " Dont create annoying backup files
 
 " NERDTree settings
-map <c-k> :NERDTreeToggle<CR>
+" map <c-k> :NERDTreeToggle<CR>
 
 " Open help window always vertically
 nmap zH :vert he
@@ -145,6 +149,10 @@ autocmd FileType python set omnifunc=pythoncomplete#Complete
 autocmd FileType python set expandtab shiftwidth=4 softtabstop=4
 autocmd FileType python set completeopt=menu
 autocmd FileType python set expandtab              " Tabs are converted to spaces
+
+autocmd FileType *.c set tabstop=4 softtabstop=4 shiftwidth=4 noexpandtab
+autocmd FileType *.cpp set tabstop=4 softtabstop=4 shiftwidth=4 noexpandtab
+
 
 " Multibyte reading of utf-16
 if has("multi_byte")
@@ -190,59 +198,9 @@ if has("autocmd")
   autocmd FileType rst setlocal expandtab shiftwidth=4 tabstop=4 softtabstop=4
   \ colorcolumn=79 formatoptions+=nqt textwidth=74
 
-  "spell check when writing commit logs
-  autocmd filetype svn,*commit* setlocal spell
-
   "" When editing a file, always jump to the last cursor position
   autocmd BufReadPost *
   \ if line("'\"") > 0 && line ("'\"") <= line("$") |
   \   exe "normal g'\"" |
   \ endif
 endif
-
-" Plugin configurations
-"""""""""""""""""""""""
-
-" NERDCommenter
-" Add extra 1 space around delimiters
-let NERDSpaceDelims=1
-
-" NERDTree
-let NERDTreeChDirMode=2
-let NERDTreeIgnore=['\~$', '\.pyc$', '\.pyo$', '\.class$', 'pip-log\.txt$', '\.o$']
-
-" Toggle NERDTree and Tagbar simultaneously
-function! ToggleNERDTreeAndTagbar()
-    let w:jumpbacktohere = 1
-
-    " Detect which plugins are open
-    if exists('t:NERDTreeBufName')
-        let nerdtree_open = bufwinnr(t:NERDTreeBufName) != -1
-    else
-        let nerdtree_open = 0
-    endif
-    let tagbar_open = bufwinnr('__Tagbar__') != -1
-
-    " Perform the appropriate action
-    if nerdtree_open && tagbar_open
-        NERDTreeClose
-        TagbarClose
-    elseif nerdtree_open
-        TagbarOpen
-    elseif tagbar_open
-        NERDTree
-    else
-        NERDTree
-        TagbarOpen
-    endif
-
-    " Jump back to the original window
-    for window in range(1, winnr('$'))
-        execute window . 'wincmd w'
-        if exists('w:jumpbacktohere')
-            unlet w:jumpbacktohere
-            break
-        endif
-    endfor
-endfunction
-nmap <leader>j :call ToggleNERDTreeAndTagbar()<CR>
