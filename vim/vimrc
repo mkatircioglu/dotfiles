@@ -150,6 +150,7 @@ autocmd FileType python set expandtab shiftwidth=4 softtabstop=4
 autocmd FileType python set completeopt=menu
 autocmd FileType python set expandtab              " Tabs are converted to spaces
 
+" C/C++ stuff
 autocmd FileType *.c set tabstop=4 softtabstop=4 shiftwidth=4 noexpandtab
 autocmd FileType *.cpp set tabstop=4 softtabstop=4 shiftwidth=4 noexpandtab
 
