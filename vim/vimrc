@@ -69,6 +69,9 @@ let g:mapleader = ","
 " add quotes to autoclose plugin
 let g:AutoClosePairs_add = "<> \" \'"
 
+
+let g:ackprg="ack -H --nocolor --nogroup --column"
+
 " Fast saving
 nmap <leader>w :w!<cr>
 nmap <leader>q :q!<cr>
