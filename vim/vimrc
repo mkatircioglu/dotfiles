@@ -71,8 +71,9 @@ let g:mapleader = ","
 " add quotes to autoclose plugin
 let g:AutoClosePairs_add = "<> \" \'"
 
-
+" ack spesific fixes
 let g:ackprg="ack -H --nocolor --nogroup --column"
+noremap <Leader>a :Ack <cword><cr>
 
 " Fast saving
 nmap <leader>w :w!<cr>
@@ -156,8 +157,13 @@ autocmd FileType python set completeopt=menu
 autocmd FileType python set expandtab              " Tabs are converted to spaces
 
 " C/C++ stuff
-autocmd FileType *.c set tabstop=4 softtabstop=4 shiftwidth=4 noexpandtab
-autocmd FileType *.cpp set tabstop=4 softtabstop=4 shiftwidth=4 noexpandtab
+"autocmd FileType *.c set softtabstop=4 shiftwidth=4 noexpandtab
+"autocmd FileType *.cpp set softtabstop=4 shiftwidth=4 noexpandtab
+
+set tabstop=4
+set softtabstop=4
+set expandtab
+
 
 
 " Multibyte reading of utf-16
@@ -185,28 +191,3 @@ if has('gui')
     set guioptions-=R
 end
 
-" Only do this part when compiled with support for autocommands
-"if has("autocmd")
-  "autocmd BufRead *.txt set tw=78
-  "autocmd BufRead *.txt set syntax=notes
-
-  "autocmd FileType python set omnifunc=pythoncomplete#Complete
-
-  "" Set the cwindow (quickfix) to the bottom of all windows
-  "autocmd FileType qf wincmd J
-
-  "autocmd BufRead *.c set makeprg=make
-  "autocmd BufRead *.cpp set makeprg=make
-  "autocmd BufRead *.h set makeprg=make
-  "autocmd BufRead *.hpp set makeprg=make
-
-  "autocmd BufNewFile,BufRead *.rst setlocal ft=rst
-  "autocmd FileType rst setlocal expandtab shiftwidth=4 tabstop=4 softtabstop=4
-  "\ colorcolumn=79 formatoptions+=nqt textwidth=74
-
-  """ When editing a file, always jump to the last cursor position
-  "autocmd BufReadPost *
-  "\ if line("'\"") > 0 && line ("'\"") <= line("$") |
-  "\   exe "normal g'\"" |
-  "\ endif
-"endif
