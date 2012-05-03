@@ -6,6 +6,7 @@ set nocompatible                "Turn off compability mode with Vi, we don't nee
 call pathogen#runtime_append_all_bundles()
 call pathogen#helptags()
 
+
 set cindent
 set autoindent                  " Copy indent from current line when starting a new line.
 set backspace=indent,eol,start  " makes backspace key more powerful.
@@ -31,7 +32,8 @@ set showcmd                     " Show me what I'm typing
 set showmode                    " Show current mode.
 set encoding=utf-8              " Set default encoding to UTF-8
 set autowrite                   " Automatically save before :next, :make etc.
-set cmdheight=2                 " The commandbar height
+set cmdheight=1                 " The commandbar height
+set laststatus=2
 
 set splitright                  " Split vertical windows right to the current windows
 set splitbelow                  " Split horizontal windows below to the current windows
@@ -184,27 +186,27 @@ if has('gui')
 end
 
 " Only do this part when compiled with support for autocommands
-if has("autocmd")
-  autocmd BufRead *.txt set tw=78
-  autocmd BufRead *.txt set syntax=notes
+"if has("autocmd")
+  "autocmd BufRead *.txt set tw=78
+  "autocmd BufRead *.txt set syntax=notes
 
-  autocmd FileType python set omnifunc=pythoncomplete#Complete
+  "autocmd FileType python set omnifunc=pythoncomplete#Complete
 
-  " Set the cwindow (quickfix) to the bottom of all windows
-  autocmd FileType qf wincmd J
+  "" Set the cwindow (quickfix) to the bottom of all windows
+  "autocmd FileType qf wincmd J
 
-  autocmd BufRead *.c set makeprg=make
-  autocmd BufRead *.cpp set makeprg=make
-  autocmd BufRead *.h set makeprg=make
-  autocmd BufRead *.hpp set makeprg=make
+  "autocmd BufRead *.c set makeprg=make
+  "autocmd BufRead *.cpp set makeprg=make
+  "autocmd BufRead *.h set makeprg=make
+  "autocmd BufRead *.hpp set makeprg=make
 
-  autocmd BufNewFile,BufRead *.rst setlocal ft=rst
-  autocmd FileType rst setlocal expandtab shiftwidth=4 tabstop=4 softtabstop=4
-  \ colorcolumn=79 formatoptions+=nqt textwidth=74
+  "autocmd BufNewFile,BufRead *.rst setlocal ft=rst
+  "autocmd FileType rst setlocal expandtab shiftwidth=4 tabstop=4 softtabstop=4
+  "\ colorcolumn=79 formatoptions+=nqt textwidth=74
 
-  "" When editing a file, always jump to the last cursor position
-  autocmd BufReadPost *
-  \ if line("'\"") > 0 && line ("'\"") <= line("$") |
-  \   exe "normal g'\"" |
-  \ endif
-endif
+  """ When editing a file, always jump to the last cursor position
+  "autocmd BufReadPost *
+  "\ if line("'\"") > 0 && line ("'\"") <= line("$") |
+  "\   exe "normal g'\"" |
+  "\ endif
+"endif
