@@ -68,9 +68,6 @@ let mapleader = ","
 let g:mapleader = ","
 
 
-" add quotes to autoclose plugin
-let g:AutoClosePairs_add = "<> \" \'"
-
 " ack spesific fixes
 let g:ackprg="ack -H --nocolor --nogroup --column"
 noremap <Leader>a :Ack <cword><cr>
@@ -101,7 +98,12 @@ map <MouseMiddle> <Esc>"*p
 " <C-l> redraws the screen and removes any search highlighting.
 nnoremap <silent> <C-l> :nohl<CR><C-l>
 
+" Autoclose Plugin
+"
+let g:AutoClosePairs_add = "<> \" \'"  "add quotes to autoclose plugin
+
 " Tagbar plugin
+"
 nmap <C-T> :TagbarToggle<CR>
 let g:tagbar_autofocus = 1
 
@@ -118,7 +120,7 @@ imap jj <ESC>
 let g:clipbrdDefaultReg = '+'
 
 " Search mappings: These will make it so that going to the next one in a
-" " search will center on the line it's found in.
+" search will center on the line it's found in.
 map N Nzz
 map n nzz
 
