@@ -101,6 +101,10 @@ map <MouseMiddle> <Esc>"*p
 " <C-l> redraws the screen and removes any search highlighting.
 nnoremap <silent> <C-l> :nohl<CR><C-l>
 
+" Tagbar plugin
+nmap <C-T> :TagbarToggle<CR>
+let g:tagbar_autofocus = 1
+
 map <F8> :!python % <enter>
 
 map <F9> :!gcc -o %< %<CR><C-w>
