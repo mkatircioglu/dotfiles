@@ -24,6 +24,9 @@ bindkey '^Xe' edit-command-line
 ###########
 # ALIASES #
 ###########
+#todo.txt
+PATH=$PATH:"/home/fatih/Dropbox/todo/"
+alias t="todo.sh -d /home/fatih/Dropbox/todo/todo.cfg"
 
 # List direcory contents
 alias ls='ls --color=auto'
