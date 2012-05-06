@@ -87,7 +87,7 @@ nnoremap <space> za
 nnoremap <NL> i<CR><ESC>
 
 " Toggle numbers with ctrl+n
-nmap <C-N><C-N> :set invnumber <CR>
+"nmap <C-N><C-N> :set invnumber <CR>
 
 " Move up and down on splitted lines (on small width screens)
 map <Up> gk
@@ -109,6 +109,16 @@ let g:AutoClosePairs_add = "<> \" \'"  "add quotes to autoclose plugin
 "
 nmap <C-T> :TagbarToggle<CR>
 let g:tagbar_autofocus = 1
+
+" Nerdtree plugin
+"
+nmap <C-N> :NERDTreeMirrorToggle <CR>
+let NERDTreeChDirMode=2
+let NERDTreeIgnore=['\~$', '\.pyc$', '\.pyo$', '\.class$', 'pip-log\.txt$', '\.o$'] "
+
+" Nerdtree-tabs plugin
+"
+let g:nerdtree_tabs_open_on_console_startup=1
 
 map <F8> :!python % <enter>
 
