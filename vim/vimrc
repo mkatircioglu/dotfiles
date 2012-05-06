@@ -70,7 +70,7 @@ let g:mapleader = ","
 
 " ack spesific fixes
 let g:ackprg="ack -H --nocolor --nogroup --column"
-noremap <Leader>a :Ack <cword><cr>
+noremap <Leader>a :Ack! <cword><cr>
 
 " Fast saving
 nmap <leader>w :w!<cr>
