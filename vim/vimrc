@@ -140,11 +140,11 @@ set showfulltag
 "towards root until one is found. IOW, you can be anywhere in your source tree
 "instead of just the root of it.
 set tags=./tags;/
-map <leader>s <C-W><C-I>
+map <leader>s <C-W><C-I><CR>
 " Open the definition in a new tab
-map <leader>t :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
+map <leader>t :tab split<CR>:exec("tag ".expand("<cword>"))<CR>zz
 " Open the definition in a vertical split
-map <leader>v :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
+map <leader>v :vsp <CR>:exec("tag ".expand("<cword>"))<CR>zz
 
 " ack spesific fixes
 let g:ackprg="ack -H --nocolor --nogroup --column"
@@ -193,7 +193,7 @@ let NERDTreeIgnore=['\~$', '\.pyc$', '\.pyo$', '\.class$', 'pip-log\.txt$', '\.o
 
 " Nerdtree-tabs plugin
 "
-let g:nerdtree_tabs_open_on_console_startup=1
+"let g:nerdtree_tabs_open_on_console_startup=1
 
 " Some very simple pyton and c runs
 "
