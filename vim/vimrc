@@ -44,6 +44,9 @@ set lazyredraw                  " the screen will not be redrawn while executing
 " Prefer unix over windows over os9 formats
 set fileformats=unix,dos,mac
 
+" we don't want to edit these kind of files >.<
+set wildignore=*.o,*.obj,*.bak,*.exe,*.so,*.la,*.out,*.pyc,*.swp
+
 " C/C++ stuff, tabs are four columns wide. Each indentation level is one tab
 set tabstop=4
 set softtabstop=4
@@ -55,109 +58,11 @@ set undofile
 set undodir=/tmp
 set nobackup            " Dont create annoying backup files
 
-""""""""""""""""""""
-" Color and Syntax "
-" ---------------- "
-
-syntax enable                   " syntax formatting for languages
-
-set background=dark
-set t_Co=256                    " set to 256 color mode if the console supports it
-let g:solarized_termtrans=1
-let g:solarized_termcolors=256
-let g:solarized_contrast="high"
-let g:solarized_visibility="high"
-
-colorscheme molokai
-
-set makeprg=make
-set showfulltag
-
-"This will look in the current directory for "tags", and work up the tree
-"towards root until one is found. IOW, you can be anywhere in your source tree
-"instead of just the root of it.
-set tags=./tags;/
-
-" With a map leader it's possible to do extra key combinations
-" i.e: <leader>w saves the current file
-let mapleader = ","
-let g:mapleader = ","
-
-
-" ack spesific fixes
-let g:ackprg="ack -H --nocolor --nogroup --column"
-noremap <Leader>a :Ack! <cword><cr>
-
-" Fast saving
-nmap <leader>w :w!<cr>
-nmap <leader>q :q!<cr>
-nmap <leader>wq :wq!<cr>
-
-" Change switching to alternating between previous and current windows
-map <C-W><C-W> <C-W><C-P>
-
-" Save fold settings, open/close folds easily with spacebar
-nnoremap <space> za
-
-" Break lines into two pieces with Ctrl + j (reverse of Shift + j)
-nnoremap <NL> i<CR><ESC>
-
-" Move up and down on splitted lines (on small width screens)
-map <Up> gk
-map <Down> gj
-map k gk
-map j gj
-
-" Make mouse middle click paste without formatting it
-map <MouseMiddle> <Esc>"*p
-
-" <C-l> redraws the screen and removes any search highlighting.
-nnoremap <silent> <C-l> :nohl<CR><C-l>
-
-" Autoclose Plugin
-"
-let g:AutoClosePairs_add = "<> \" \'"  "add quotes to autoclose plugin
-
-" Tagbar plugin
-"
-nmap <leader>t :TagbarToggle<CR>
-let g:tagbar_autofocus = 1
-
-" Nerdtree plugin
-"
-nmap <C-N> :NERDTreeMirrorToggle <CR>
-let NERDTreeChDirMode=2
-let NERDTreeIgnore=['\~$', '\.pyc$', '\.pyo$', '\.class$', 'pip-log\.txt$', '\.o$'] "
-
-" Nerdtree-tabs plugin
-"
-let g:nerdtree_tabs_open_on_console_startup=1
-
-" Some very simple pyton and c runs
-"
-map <F8> :!python % <enter>
-map <F9> :!gcc -o %< %<CR><C-w>
-map <F10> :! ./%< <CR>
-
-" Just go out in insert mode
-imap jj <ESC>
-
-" Since I use linux, I want this
-let g:clipbrdDefaultReg = '+'
-
-" Search mappings: These will make it so that going to the next one in a
-" search will center on the line it's found in.
-map N Nzz
-map n nzz
-
-" Open help window always vertically
-nmap zH :vert he
-
-" Set working directory
-nnoremap <leader>. :lcd %:p:h<CR>
-
-" we don't want to edit these kind of files >.<
-set wildignore=*.o,*.obj,*.bak,*.exe,*.so,*.la,*.out,*.pyc,*.swp
+"make vim save and load the folding of the document each time it loads"
+""also places the cursor in the last place that it was left."
+au BufWinLeave * mkview
+au BufWinEnter * silent loadview
+set viewdir=/tmp
 
 " Enable filetype stuff
 filetype on
@@ -201,4 +106,116 @@ if has('gui')
     set guioptions-=r  "no scrollbar
     set guioptions-=R
 end
+
+""""""""""""""""""""
+" Color and Syntax "
+" ---------------- "
+
+syntax enable                   " syntax formatting for languages
+
+set background=dark
+set t_Co=256                    " set to 256 color mode if the console supports it
+let g:solarized_termtrans=1
+let g:solarized_termcolors=256
+let g:solarized_contrast="high"
+let g:solarized_visibility="high"
+
+colorscheme molokai
+
+
+"""""""""""""""""""""""""""""""""""""""""""""
+" Mappings, key bindings for plugins, etc.. "
+" ----------------------------------------- "
+
+" This comes first, because we have mappings that depend on leader
+" With a map leader it's possible to do extra key combinations
+" i.e: <leader>w saves the current file
+let mapleader = ","
+let g:mapleader = ","
+
+set makeprg=make
+set showfulltag
+
+"This will look in the current directory for "tags", and work up the tree
+"towards root until one is found. IOW, you can be anywhere in your source tree
+"instead of just the root of it.
+set tags=./tags;/
+map <leader>s <C-W><C-I>
+" Open the definition in a new tab
+map <leader>t :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
+" Open the definition in a vertical split
+map <leader>v :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
+
+" ack spesific fixes
+let g:ackprg="ack -H --nocolor --nogroup --column"
+noremap <Leader>a :Ack! <cword><cr>
+
+" Fast saving
+nmap <leader>w :w!<cr>
+nmap <leader>q :q!<cr>
+nmap <leader>wq :wq!<cr>
+
+" Change switching to alternating between previous and current windows
+map <C-W><C-W> <C-W><C-P>
+
+" Save fold settings, open/close folds easily with spacebar
+nnoremap <space> za
+
+" Break lines into two pieces with Ctrl + j (reverse of Shift + j)
+nnoremap <NL> i<CR><ESC>
+
+" Move up and down on splitted lines (on small width screens)
+map <Up> gk
+map <Down> gj
+map k gk
+map j gj
+
+" Make mouse middle click paste without formatting it
+map <MouseMiddle> <Esc>"*p
+
+" <C-l> redraws the screen and removes any search highlighting.
+nnoremap <silent> <C-l> :nohl<CR><C-l>
+
+" Autoclose Plugin
+"
+let g:AutoClosePairs_add = "<> \" \'"  "add quotes to autoclose plugin
+
+" Tagbar plugin
+"
+nmap <leader>b :TagbarToggle<CR>
+let g:tagbar_autofocus = 1
+
+" Nerdtree plugin
+"
+nmap <C-N> :NERDTreeMirrorToggle <CR>
+let NERDTreeChDirMode=2
+let NERDTreeIgnore=['\~$', '\.pyc$', '\.pyo$', '\.class$', 'pip-log\.txt$', '\.o$'] "
+
+" Nerdtree-tabs plugin
+"
+let g:nerdtree_tabs_open_on_console_startup=1
+
+" Some very simple pyton and c runs
+"
+map <F8> :!python % <enter>
+map <F9> :!gcc -o %< %<CR><C-w>
+map <F10> :! ./%< <CR>
+
+" Just go out in insert mode
+imap jj <ESC>
+
+" Since I use linux, I want this
+let g:clipbrdDefaultReg = '+'
+
+" Search mappings: These will make it so that going to the next one in a
+" search will center on the line it's found in.
+map N Nzz
+map n nzz
+
+" Open help window always vertically
+nmap zH :vert he
+
+" Set working directory
+nnoremap <leader>. :lcd %:p:h<CR>
+
 
