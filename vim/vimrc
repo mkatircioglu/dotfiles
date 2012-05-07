@@ -155,11 +155,8 @@ nmap <leader>w :w!<cr>
 nmap <leader>q :q!<cr>
 nmap <leader>wq :wq!<cr>
 
-" Change switching to alternating between previous and current windows
-map <C-W><C-W> <C-W><C-P>
-
 " Save fold settings, open/close folds easily with spacebar
-nnoremap <space> za
+nnoremap <space> zz
 
 " Break lines into two pieces with Ctrl + j (reverse of Shift + j)
 nnoremap <NL> i<CR><ESC>
