@@ -1,11 +1,9 @@
 " .vimrc
-
 set nocompatible                "Turn off compability mode with Vi, we don't need that anymore
 
 " Pathogen
 call pathogen#runtime_append_all_bundles()
 call pathogen#helptags()
-
 
 set cindent
 set autoindent                  " Copy indent from current line when starting a new line.
@@ -43,10 +41,23 @@ set mat=5                       " show matching brackets for 0.5 seconds
 set wrap                        " word wrap
 set lazyredraw                  " the screen will not be redrawn while executing macros, registers
 
-" Status line format:
-" {buffer number}: {file name, relative path to the current working directory}{modified flag}{readonly flag}
-" {preview flag} [file type, encoding, format] [current line-total lines, current column][position percentage in file]
-"set statusline=%n:\ %f%m%r%w\ [%Y,%{&fileencoding},%{&fileformat}]\ [%{getcwd()}]%=\ [%l-%L,%v][%p%%]
+" Prefer unix over windows over os9 formats
+set fileformats=unix,dos,mac
+
+" C/C++ stuff, tabs are four columns wide. Each indentation level is one tab
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
+set noexpandtab "Dont produce spaces for tabs
+
+" Enable undo even if the file is closed
+set undofile
+set undodir=/tmp
+set nobackup            " Dont create annoying backup files
+
+""""""""""""""""""""
+" Color and Syntax "
+" ---------------- "
 
 syntax enable                   " syntax formatting for languages
 
@@ -86,9 +97,6 @@ nnoremap <space> za
 " Break lines into two pieces with Ctrl + j (reverse of Shift + j)
 nnoremap <NL> i<CR><ESC>
 
-" Toggle numbers with ctrl+n
-"nmap <C-N><C-N> :set invnumber <CR>
-
 " Move up and down on splitted lines (on small width screens)
 map <Up> gk
 map <Down> gj
@@ -120,10 +128,10 @@ let NERDTreeIgnore=['\~$', '\.pyc$', '\.pyo$', '\.class$', 'pip-log\.txt$', '\.o
 "
 let g:nerdtree_tabs_open_on_console_startup=1
 
+" Some very simple pyton and c runs
+"
 map <F8> :!python % <enter>
-
 map <F9> :!gcc -o %< %<CR><C-w>
-"map <F10> :! ./%<<CR>
 map <F10> :! ./%< <CR>
 
 " Just go out in insert mode
@@ -137,20 +145,11 @@ let g:clipbrdDefaultReg = '+'
 map N Nzz
 map n nzz
 
-set nobackup            " Dont create annoying backup files
-
-" NERDTree settings
-" map <c-k> :NERDTreeToggle<CR>
-
 " Open help window always vertically
 nmap zH :vert he
 
 " Set working directory
 nnoremap <leader>. :lcd %:p:h<CR>
-
-" Enable undo even if the file is closed
-set undofile
-set undodir=/tmp
 
 " we don't want to edit these kind of files >.<
 set wildignore=*.o,*.obj,*.bak,*.exe,*.so,*.la,*.out,*.pyc,*.swp
@@ -159,9 +158,6 @@ set wildignore=*.o,*.obj,*.bak,*.exe,*.so,*.la,*.out,*.pyc,*.swp
 filetype on
 filetype plugin on
 filetype plugin indent on
-
-" Prefer unix over windows over os9 formats
-set fileformats=unix,dos,mac
 
 " -[ FileTypes ]-
 " mail
@@ -174,15 +170,6 @@ autocmd FileType python set omnifunc=pythoncomplete#Complete
 autocmd FileType python set expandtab shiftwidth=4 softtabstop=4
 autocmd FileType python set completeopt=menu
 autocmd FileType python set expandtab              " Tabs are converted to spaces
-
-" C/C++ stuff
-"autocmd FileType *.c set softtabstop=4 shiftwidth=4 noexpandtab
-"autocmd FileType *.cpp set softtabstop=4 shiftwidth=4 noexpandtab
-
-set tabstop=4
-set softtabstop=4
-set expandtab
-
 
 
 " Multibyte reading of utf-16
