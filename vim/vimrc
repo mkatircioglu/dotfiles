@@ -73,6 +73,11 @@ colorscheme molokai
 set makeprg=make
 set showfulltag
 
+"This will look in the current directory for "tags", and work up the tree
+"towards root until one is found. IOW, you can be anywhere in your source tree
+"instead of just the root of it.
+set tags=./tags;/
+
 " With a map leader it's possible to do extra key combinations
 " i.e: <leader>w saves the current file
 let mapleader = ","
@@ -115,7 +120,7 @@ let g:AutoClosePairs_add = "<> \" \'"  "add quotes to autoclose plugin
 
 " Tagbar plugin
 "
-nmap <C-T> :TagbarToggle<CR>
+nmap <leader>t :TagbarToggle<CR>
 let g:tagbar_autofocus = 1
 
 " Nerdtree plugin
