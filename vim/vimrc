@@ -72,8 +72,12 @@ filetype plugin indent on
 " -[ FileTypes ]-
 " mail
 autocmd FileType mail,human set formatoptions+=t textwidth=80
+
+" markdown
 autocmd FileType markdown set textwidth=80
 autocmd FileType markdown set nocindent "Wraping fix for braces
+autocmd FileType markdown set expandtab "Use spaces for tabs, a requirement by markdown
+autocmd FileType markdown set shiftwidth=4
 
 " Python stuff
 autocmd FileType python let python_highlight_all = 1
