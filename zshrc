@@ -24,6 +24,13 @@ bindkey '^Xe' edit-command-line
 ###########
 # ALIASES #
 ###########
+
+alias -s markdown=vim
+alias -s txt=vim
+
+
+
+
 #cit
 PATH=$PATH:"/home/fatih/cit/"
 alias cit="cit.py"
