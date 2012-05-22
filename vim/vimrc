@@ -71,7 +71,7 @@ filetype plugin indent on
 
 " -[ FileTypes ]-
 " mail
-autocmd FileType mail,human set formatoptions+=t textwidth=80
+autocmd FileType mail,human, markdown set formatoptions+=t textwidth=80
 
 " Python stuff
 autocmd FileType python let python_highlight_all = 1
@@ -184,7 +184,7 @@ let g:tagbar_autofocus = 1
 
 " Nerdtree plugin
 "
-nmap <C-N> :NERDTreeMirrorToggle <CR>
+nmap <leader>n :NERDTreeMirrorToggle <CR>
 let NERDTreeChDirMode=2
 let NERDTreeIgnore=['\~$', '\.pyc$', '\.pyo$', '\.class$', 'pip-log\.txt$', '\.o$'] "
 
