@@ -24,6 +24,10 @@ bindkey '^Xe' edit-command-line
 ###########
 # ALIASES #
 ###########
+#cit
+PATH=$PATH:"/home/fatih/cit/"
+alias cit="cit.py"
+
 #todo.txt
 PATH=$PATH:"/home/fatih/Dropbox/todo/"
 alias t="todo.sh -d /home/fatih/Dropbox/todo/todo.cfg"
@@ -173,6 +177,31 @@ autoload colors; colors;
 export lscolors="gxfxcxdxbxegedabagacad"
 
 PS1="%{$fg[red]%}%B%n%b%{$reset_color%}@%{$fg[blue]%}%B%m%b %{$fg[yellow]%}%B%1~%b %{$reset_color%}%% "
+
+# Binary,Dec and Hex conversion functions
+#
+h2d(){
+  echo "ibase=16; $@"|bc
+}
+d2h(){
+  echo "obase=16; $@"|bc
+}
+
+h2b(){
+  echo "ibase=16;obase=2; $@"|bc
+}
+b2h(){
+  echo "obase=2;obase=16; $@"|bc
+}
+
+d2b(){
+  echo "ibase=16; $@"|bc
+}
+b2d(){
+  echo "obase=16; $@"|bc
+}
+
+
 
 # PLUGIN
 
