@@ -181,7 +181,7 @@ nnoremap <silent> <C-l> :nohl<CR><C-l>
 
 " Autoclose Plugin
 "
-let g:AutoClosePairs_add = "<> \" \'"  "add quotes to autoclose plugin
+"let g:AutoClosePairs_add = "<> \" \'"  "add quotes to autoclose plugin
 
 " Tagbar plugin
 "
