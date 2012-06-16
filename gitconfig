@@ -1,6 +1,6 @@
 [user]
-	name = Fatih Arslan
-	email = ftharsln@gmail.com
+	name = Mete Katircioglu
+	email = mete@katircioglu
 [alias]
     st = status
     ci = commit
@@ -39,3 +39,5 @@
 [core]
     whitespace=fix,-indent-with-non-tab,trailing-space,cr-at-eol
 	editor = vim
+[merge]
+    tool = vimdiff
