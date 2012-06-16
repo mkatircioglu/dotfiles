@@ -1,5 +1,4 @@
 # Load Autojump
-# sudo apt-get install autojump
 source /usr/share/autojump/autojump.zsh
 
 #Disable Autcorrectur
@@ -7,8 +6,9 @@ unsetopt correct_all
 
 #Defaults
 export EDITOR="vim"
+export GIT_EDITOR="vim"
 export VISUAL="vim"
-export BROWSER="google-chrome"
+export BROWSER="firefox"
 
 # Remove words by one by, instead of fullpath
 # i.eg C-w will remove "bar" from "/foo/bar" and not the whole path
@@ -28,17 +28,6 @@ bindkey '^Xe' edit-command-line
 alias -s markdown=vim
 alias -s txt=vim
 
-
-
-
-#cit
-PATH=$PATH:"/home/fatih/cit/"
-alias cit="cit.py"
-
-#todo.txt
-PATH=$PATH:"/home/fatih/Dropbox/todo/"
-alias t="todo.sh -d /home/fatih/Dropbox/todo/todo.cfg"
-
 # List direcory contents
 alias ls='ls --color=auto'
 alias lsa='ls -lah'
@@ -50,14 +39,12 @@ alias dg="git diff"
 alias u="svn up"
 alias m="vim Makefile"
 
-alias sil="rm *.pisi"
 
 alias c="clear"
 alias cls="clear && ls"
 alias rm="rm -f"
 
 alias tmux="tmux -2"
-alias find32="find *  | xargs file | grep '32-bit'"
 
 # Directories
 setopt auto_pushd
@@ -65,29 +52,18 @@ setopt pushd_ignore_dups
 alias ..='cd ..'
 alias cd..='cd ..'
 
-# alias 1='cd -'
-# alias 2='cd +2'
-# alias 3='cd +3'
-# alias 4='cd +4'
-# alias 5='cd +5'
-# alias 6='cd +6'
-# alias 7='cd +7'
-# alias 8='cd +8'
-# alias 9='cd +9'
+# Sudo
+if [ -e /usr/bin/sudo ] ; then
+  alias halt='sudo /sbin/halt'
+  alias reboot='sudo /sbin/reboot'
+  alias susp='sudo s2ram -f -p -m'
+fi
 
-# cd () {
-  # if   [[ "x$*" == "x..." ]]; then
-    # cd ../..
-  # elif [[ "x$*" == "x...." ]]; then
-    # cd ../../..
-  # elif [[ "x$*" == "x....." ]]; then
-    # cd ../../..
-  # elif [[ "x$*" == "x......" ]]; then
-    # cd ../../../..
-  # else
-    # builtin cd "$@"
-  # fi
-# }
+# Sourcebox
+alias _repo="$HOME/repo"
+alias _verivue="$HOME/repo/verivue"
+alias _github="$HOME/repo/github"
+alias _bitbucket="$HOME/repo/bitbucket"
 
 ##############
 # COMPLETION #
