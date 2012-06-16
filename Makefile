@@ -1,11 +1,11 @@
 all:
-	[ -d ~/.vim/ ] || ln -s ~/dotfiles/vim/ ~/.vim
-	[ -f ~/.vimrc ] || ln -s ~/dotfiles/vim/vimrc ~/.vimrc
-	[ -f ~/.zshrc ] || ln -s ~/dotfiles/zshrc ~/.zshrc
-	[ -f ~/.gitconfig ] || ln -s ~/dotfiles/gitconfig ~/.gitconfig
-	[ -f ~/.tmux.conf ] || ln -s ~/dotfiles/tmuxconf ~/.tmux.conf
+	[ -d ~/.vim/ ] || ln -s $(PWD)/vim ~/.vim
+	[ -f ~/.vimrc ] || ln -s $(PWD)/vim/vimrc ~/.vimrc
+	[ -f ~/.zshrc ] || ln -s $(PWD)/zshrc ~/.zshrc
+	[ -f ~/.gitconfig ] || ln -s $(PWD)/gitconfig ~/.gitconfig
+	[ -f ~/.tmux.conf ] || ln -s $(PWD)/tmuxconf ~/.tmux.conf
 
 clean:
-	rm -f ~/.vimrc ~/.zshrc ~/.vim ~/.zsh
+	rm -rf ~/.vimrc ~/.zshrc ~/.vim ~/.zsh ~/.gitconfig ~/.tmux.conf
 
 .PHONY: all
