@@ -12,7 +12,7 @@
 	ignore = dirty
 [submodule "vim/bundle/vim-powerline"]
 	path = vim/bundle/vim-powerline
-	url = https://github.com/Lokaltog/vim-powerline.git
+	url = git://github.com/Lokaltog/vim-powerline.git
 	ignore = dirty
 [submodule "vim/bundle/vim-surround"]
 	path = vim/bundle/vim-surround
@@ -20,37 +20,37 @@
 	ignore = dirty
 [submodule "vim/bundle/a"]
 	path = vim/bundle/a
-	url = https://github.com/vim-scripts/a.vim.git
+	url = git://github.com/vim-scripts/a.vim.git
 	ignore = dirty
 [submodule "vim/bundle/vim-repeat"]
 	path = vim/bundle/vim-repeat
-	url = https://github.com/tpope/vim-repeat.git
+	url = git://github.com/tpope/vim-repeat.git
 	ignore = dirty
 [submodule "vim/bundle/vim-autoclose"]
 	path = vim/bundle/vim-autoclose
-	url = https://github.com/Townk/vim-autoclose.git
+	url = git://github.com/Townk/vim-autoclose.git
 	ignore = dirty
 [submodule "vim/bundle/ctrlp"]
 	path = vim/bundle/ctrlp
-	url = https://github.com/kien/ctrlp.vim.git
+	url = git://github.com/kien/ctrlp.vim.git
 	ignore = dirty
 [submodule "vim/bundle/ack.vim"]
 	path = vim/bundle/ack.vim
-	url = https://github.com/mileszs/ack.vim.git
+	url = git://github.com/mileszs/ack.vim.git
 	ignore = dirty
 [submodule "vim/bundle/tagbar"]
 	path = vim/bundle/tagbar
-	url = https://github.com/majutsushi/tagbar.git
+	url = git://github.com/majutsushi/tagbar.git
 	ignore = dirty
 [submodule "vim/bundle/nerdtree"]
 	path = vim/bundle/nerdtree
-	url = https://github.com/scrooloose/nerdtree.git
+	url = git://github.com/scrooloose/nerdtree.git
 	ignore = dirty
 [submodule "vim/bundle/vim-nerdtree-tabs"]
 	path = vim/bundle/vim-nerdtree-tabs
-	url = https://github.com/jistr/vim-nerdtree-tabs.git
+	url = git://github.com/jistr/vim-nerdtree-tabs.git
 	ignore = dirty
 [submodule "vim/bundle/xmledit"]
 	path = vim/bundle/xmledit
-	url = https://github.com/sukima/xmledit.git
+	url = git://github.com/sukima/xmledit.git
 	ignore = dirty
