@@ -20,11 +20,11 @@ set -g default-terminal "screen-256color"
 setw -g automatic-rename off
 
 # command prefix (like screen)
-set -g prefix C-a
-bind C-a send-prefix
+set -g prefix C-f
+bind C-f send-prefix
 
 # Move to last-window
-bind-key C-a last-window
+#bind-key C-a last-window
 
 bind-key k confirm-before kill-window
 bind-key r source-file ~/.tmux.conf
