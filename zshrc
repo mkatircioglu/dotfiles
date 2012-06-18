@@ -1,6 +1,3 @@
-# Load Autojump
-source /usr/share/autojump/autojump.zsh
-
 #Disable Autcorrectur
 unsetopt correct_all
 
@@ -24,47 +21,30 @@ bindkey '^Xe' edit-command-line
 ###########
 # ALIASES #
 ###########
-
 alias -s markdown=vim
 alias -s txt=vim
-
-# List direcory contents
-alias ls='ls --color=auto'
-alias lsa='ls -lah'
-alias l='ls -la'
-alias ll='ls -l'
-alias sl=ls # often screw this up
-
 alias dg="git diff"
-alias u="svn up"
-alias m="vim Makefile"
-
-
 alias c="clear"
 alias cls="clear && ls"
 alias rm="rm -f"
-
 alias tmux="tmux -2"
-
-# Directories
-setopt auto_pushd
-setopt pushd_ignore_dups
 alias ..='cd ..'
 alias cd..='cd ..'
-
 # Sudo
 if [ -e /usr/bin/sudo ] ; then
   alias halt='sudo /sbin/halt'
   alias reboot='sudo /sbin/reboot'
   alias susp='sudo s2ram -f -p -m'
 fi
-
 # Sourcebox
-alias _repo="$HOME/repo"
-alias _verivue="$HOME/repo/verivue"
-alias _github="$HOME/repo/github"
-alias _bitbucket="$HOME/repo/bitbucket"
+alias _repo="cd $HOME/repo"
+alias _verivue="cd $HOME/repo/verivue"
+alias _github="cd $HOME/repo/github"
+alias _bitbucket="cd $HOME/repo/bitbucket"
 
+# Directories
+setopt auto_pushd
+setopt pushd_ignore_dups
 ##############
 # COMPLETION #
 ##############
