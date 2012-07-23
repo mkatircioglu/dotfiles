@@ -255,3 +255,4 @@ compinit -i
 
 # [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 
+proxy() { ssh -D 8080 -v -N "$@" ;}
