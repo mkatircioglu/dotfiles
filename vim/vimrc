@@ -221,4 +221,5 @@ nmap zH :vert he
 " Set working directory
 nnoremap <leader>. :lcd %:p:h<CR>
 
-
+nnoremap <C-H> :tabprevious<CR>
+nnoremap <C-L> :tabnext<CR>
